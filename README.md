@@ -9,3 +9,8 @@
 The script to convert from Audible to MP3 requires ffmpeg >= 4.4. 
 
 In a Raspberry Pi 4, this required to manuall compilation of ffmpeg with the following flags: ``./configure --arch=arm --extra-ldflags="-latoimc" --enable-libmp3lame` and installing `libmp3lame-dev`.
+
+# References
+
+[Audible cli](https://github.com/mkb79/audible-cli)
+[AAXtoMP3](https://github.com/KrumpetPirate/AAXtoMP3)

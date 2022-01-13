@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+set -o xtrace
+
 AUDIOBOOKS_DIR="$HOME/audiobooks"
 mkdir -p "$AUDIOBOOKS_DIR" && sudo chown -R $USER:$USER $AUDIOBOOKS_DIR
 
@@ -31,8 +34,13 @@ audible download \
 
 aaxc_file=$(find $DOWNLOAD_DIR -name "*.aaxc")
 
-./AAXtoMP3 \
-        --use-audible-cli-data \
-        --target_dir "$AUDIOBOOKS_DIR" \
-        "$aaxc_file"
+# ./AAXtoMP3 \
+#         --use-audible-cli-data \
+#         --target_dir "$AUDIOBOOKS_DIR" \
+#         "$aaxc_file"
+u2dos ()
+{
+        set -f; IFS=' '; printf '%s\r\n' $(cat "$1")
+}
 
+find "$AUDIOBOOKS_DIR" -name "*.m3u" -exec  sed -i 's/\([^^M]\)$/\0^M/' {} \;
