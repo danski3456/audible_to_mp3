@@ -6,7 +6,7 @@ AUDIOBOOKS_DIR="$HOME/audiobooks"
 mkdir -p "$AUDIOBOOKS_DIR" && sudo chown -R $USER:$USER $AUDIOBOOKS_DIR
 
 echo "Updating library..."
-# audible library export
+audible library export
 
 cat library.tsv | tail -n+2 | cut -f2 | nl -w2 -s'> ' | less
 read -e -p "Which audiobook do you want to download: " -i 1 LINE 
