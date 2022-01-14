@@ -34,13 +34,12 @@ audible download \
 
 aaxc_file=$(find $DOWNLOAD_DIR -name "*.aaxc")
 
-# ./AAXtoMP3 \
-#         --use-audible-cli-data \
-#         --target_dir "$AUDIOBOOKS_DIR" \
-#         "$aaxc_file"
-u2dos ()
-{
-        set -f; IFS=' '; printf '%s\r\n' $(cat "$1")
-}
+./AAXtoMP3 \
+        --single \
+        --dir-naming-scheme "" \
+        --use-audible-cli-data \
+        --target_dir "$AUDIOBOOKS_DIR" \
+        "$aaxc_file"
 
-find "$AUDIOBOOKS_DIR" -name "*.m3u" -exec  sed -i 's/\([^^M]\)$/\0^M/' {} \;
+find $AUDIOBOOKS_DIR -name "*.mp3" -exec sh -c "echo -n 'mv \"{}\" ' && echo \'{}\' | tr : _" \; | sh # Deal with vfat names
+
